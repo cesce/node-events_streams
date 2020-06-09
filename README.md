@@ -15,7 +15,7 @@ Node server example for uploading file
 
 Node echo server
 
-Installation:
+Server:
 
 ```Bash
 npm start
@@ -29,9 +29,9 @@ curl localhost:8000
 
 ### example04
 
-Node log file server
+Node log file server or upload file
 
-Installation:
+Server:
 
 ```Bash
 npm start
@@ -41,4 +41,6 @@ Client:
 
 ```Bash
 curl -d 'Text to send to the log file' localhost:8000
+
+curl --upload-file log_client.txt localhost:8000
 ```
