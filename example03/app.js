@@ -2,15 +2,33 @@ const http = require('http');
 
 const port = process.env.PORT || 8000;
 
-function callbackServer(req, res) {
-  console.log('new request');
+function callbackEchoServer(req, res) {
+  console.log('new request in callbackEchoServer');
   res.writeHead(200);
-  res.write('Ok');
-  res.end();
+  req.pipe(res);
+
+  req.on('data', (chunk) => {
+    console.log(chunk.toString());
+    res.write(chunk);
+  });
+}
+
+function callbackEchoServerNoPipe(req, res) {
+  res.writeHead(200);
+
+  req.on('data', (chunk) => {
+    console.log('new request in callbackEchoServerNoPipe');
+    console.log(chunk.toString());
+    res.write(chunk);
+  });
+
+  req.on('close', () => {
+    res.end();
+  });
 }
 
 // All in one when creating the server
-/* http.createServer(callbackServer).listen(port, () => {
+/* http.createServer(callbackEchoServer).listen(port, () => {
   console.log(`App is running in port ${port}`);
 }); */
 
@@ -20,7 +38,8 @@ var server = http.createServer().listen(port, () => {
   console.log(`App is running in port ${port}`);
 });
 
-server.on('request', callbackServer);
+server.on('request', callbackEchoServer);
+server.on('request', callbackEchoServerNoPipe);
 
 server.on('close', () => {
   console.log('Server is closed ...');
