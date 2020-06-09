@@ -1,45 +1,27 @@
 const http = require('http');
+const fs = require('fs');
 
 const port = process.env.PORT || 8000;
 
-function callbackEchoServer(req, res) {
-  console.log('new request in callbackEchoServer');
-  res.writeHead(200);
-  req.pipe(res);
+function callbackLogServer(req, res) {
+  console.log('log entry ...');
+  var newFile = fs.createWriteStream('log.txt', {flags: 'a', encoding: 'utf8'});
+  var logDate = new Date();
+  newFile.write(`\n${logDate}:`);
+  req.pipe(newFile);
 
-  req.on('data', (chunk) => {
-    console.log(chunk.toString());
-    res.write(chunk);
+  req.on('end', () => {
+    res.writeHead(200);
+    res.end('Ok');
   });
 }
-
-function callbackEchoServerNoPipe(req, res) {
-  res.writeHead(200);
-
-  req.on('data', (chunk) => {
-    console.log('new request in callbackEchoServerNoPipe');
-    console.log(chunk.toString());
-    res.write(chunk);
-  });
-
-  req.on('close', () => {
-    res.end();
-  });
-}
-
-// All in one when creating the server
-/* http.createServer(callbackEchoServer).listen(port, () => {
-  console.log(`App is running in port ${port}`);
-}); */
-
 
 // We can create the server and put listening, but add requests on demand
 var server = http.createServer().listen(port, () => {
   console.log(`App is running in port ${port}`);
 });
 
-server.on('request', callbackEchoServer);
-server.on('request', callbackEchoServerNoPipe);
+server.on('request', callbackLogServer);
 
 server.on('close', () => {
   console.log('Server is closed ...');
