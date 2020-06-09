@@ -1,0 +1,25 @@
+{
+  "name": "node-events-streams",
+  "version": "1.0.0",
+  "description": "Node web server example to upload files",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cesce/node-events_streams.git"
+  },
+  "keywords": [
+    "node",
+    "upload",
+    "file",
+    "streams"
+  ],
+  "author": "CEC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cesce/node-events_streams/issues"
+  },
+  "homepage": "https://github.com/cesce/node-events_streams#readme"
+}
