@@ -1,0 +1,24 @@
+{
+    "name": "node-event-stream",
+    "version": "1.0.0",
+    "description": "Test async code and wiat using events",
+    "main": "app.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/cesce/node-events_streams.git"
+    },
+    "keywords": [
+      "event",
+      "stream",
+      "test"
+    ],
+    "author": "CEC",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/cesce/node-events_streams/issues"
+    },
+    "homepage": "https://github.com/cesce/node-events_streams#readme"
+  }
