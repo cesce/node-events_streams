@@ -44,3 +44,17 @@ curl -d 'Text to send to the log file' localhost:8000
 
 curl --upload-file log_client.txt localhost:8000
 ```
+
+### example05
+
+File upload (only .jpg) server with progress
+
+```Bash
+npm start
+```
+
+Client:
+
+```Bash
+curl --upload-file test.jpg localhost:8000
+```
